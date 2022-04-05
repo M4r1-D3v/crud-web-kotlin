@@ -23,8 +23,7 @@ class UsuarioService(
     }
 
     fun buscarPorId(id: Long?): UsuarioView {
-        val usuario = usuarios.stream().filter {  //não entendi stream, estudar!
-                u ->
+        val usuario = usuarios.stream().filter { u ->
             u.id == id
         }.findFirst().get()
         return usuarioViewMapper.map(usuario)
@@ -45,7 +44,7 @@ class UsuarioService(
             id = usuarioForm.id,
             nome = usuario.nome,
             email = usuarioForm.email
-            )
+        )
         usuarios = usuarios.minus(usuario).plus(usuarioAtulizado)
         return usuarioViewMapper.map(usuarioAtulizado)
 

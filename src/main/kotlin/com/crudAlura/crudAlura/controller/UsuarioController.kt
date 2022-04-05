@@ -10,35 +10,35 @@ import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 
-@RestController //receber e enviar dados
-@RequestMapping ("/usuarios") //informa a URI que esse controller irá manipular
-class UsuarioController (private val service: UsuarioService){
+@RestController
+@RequestMapping("/usuarios")
+class UsuarioController(private val service: UsuarioService) {
 
     @GetMapping
-    fun exibir():List<UsuarioView> {
+    fun exibir(): List<UsuarioView> {
         return service.exibir()
     }
 
     @GetMapping("/{id}")
-    fun buscarPorId(@PathVariable id:Long): UsuarioView{
+    fun buscarPorId(@PathVariable id: Long): UsuarioView {
         return service.buscarPorId(id)
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun cadastrarUsuario(@RequestBody @Valid usuarioForm: UsuarioForm){ //não aceitou :Void
+    fun cadastrarUsuario(@RequestBody @Valid usuarioForm: UsuarioForm) {
         return service.cadastrarUsuario(usuarioForm)
     }
 
     @PutMapping
     fun atualizar(@RequestBody @Valid usuarioForm: AtualizacaoUsuarioForm): ResponseEntity<UsuarioView> {
-            val usuarioView = service.atualizarUsuario(usuarioForm)
-            return ResponseEntity.ok(usuarioView)
+        val usuarioView = service.atualizarUsuario(usuarioForm)
+        return ResponseEntity.ok(usuarioView)
     }
 
-    @DeleteMapping ("/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun deletarUsuario(@PathVariable id: Long){
+    fun deletarUsuario(@PathVariable id: Long) {
         return service.deletarUsuario(id)
     }
 }

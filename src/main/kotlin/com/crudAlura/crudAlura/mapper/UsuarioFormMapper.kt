@@ -5,7 +5,7 @@ import com.crudAlura.crudAlura.model.Usuario
 import org.springframework.stereotype.Component
 
 @Component
-class UsuarioFormMapper:Mapper<UsuarioForm, Usuario> {
+class UsuarioFormMapper : Mapper<UsuarioForm, Usuario> {
     override fun map(t: UsuarioForm): Usuario {
         return Usuario(
             nome = t.nome,
